@@ -7,7 +7,8 @@
  *
  * @author ivamar
  */
-public class Libro extends Producto{
+public class Libro extends Producto implements Comparable {
+
     private String editor;
     private int anoPublicacion;
 
@@ -39,18 +40,31 @@ public class Libro extends Producto{
 
     @Override
     public String toString() {
-        return super.toString()+"Libro{" + "editor=" + editor + ", anoPublicacion=" + anoPublicacion + '}';
+        return super.toString() + "Libro{" + "editor=" + editor + ", anoPublicacion=" + anoPublicacion + '}';
     }
 
     public void setPrecioNormal(float precioNormal) {
         this.precioNormal = precioNormal;
     }
 
-    
-    
-    
     public float CalculaPrecioVenta() {
-        return (float) (this.precioNormal*1.05);
+        return (float) (this.precioNormal * 1.05);
+    }
+
+   
+
+    public int compareTo(Libro t) {
+       return Integer.compare(this.anoPublicacion, t.getAnoPublicacion());
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        Libro llibre=(Libro) t;
+        return this.anoPublicacion-llibre.getAnoPublicacion();
     }
     
+    
+
+    
+
 }

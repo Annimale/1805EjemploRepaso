@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /*
@@ -14,7 +15,7 @@ public class MAIN {
 
     public static void introducirDatosTV(ArrayList<Producto> lista) {
         Scanner tcl = new Scanner(System.in);
-        
+
         int precioNormal = 0;
         String fabricante = "";
         int tamanio = 0;
@@ -45,7 +46,9 @@ public class MAIN {
         do {
             System.out.println("Introduzca el editor");
             editor = tcl.nextLine();
+
             System.out.println("Introduzca anyo de publicacion");
+
             anioPub = tcl.nextInt();
             System.out.println("Introduzca el precio normal");
             precioNormal = tcl.nextInt();
@@ -54,13 +57,15 @@ public class MAIN {
             lista.add(libroObj);
             System.out.println("Desea introducir otro libro? 1:Si  2:No");
             eleccion = tcl.nextInt();
-
+            tcl.nextLine();
         } while (eleccion == 1);
 
     }
 
     public static void main(String[] args) {
         ArrayList<Producto> lista = new ArrayList();
+        ArrayList<Libro> listaLibro = new ArrayList();
+
         Scanner tcl = new Scanner(System.in);
         boolean repetir = true;
         do {
@@ -88,7 +93,43 @@ public class MAIN {
                     }
                     break;
                 case 3:
+                    System.out.println("Pasando todos los libros a listaLibro");
+                   
+                        
+                    listaLibro.removeAll(listaLibro);
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (lista.get(i) instanceof Libro) {
+                            listaLibro.add((Libro) lista.get(i));//Aqui añadimos si es un libro los libros al arraylist
+                        }
+                        /*for (Producto producto :lista) {
+                        if (producto instanceof Libro) {//Es lo mismo que lo de arriba 
+                            listaLibro.add((Libro)producto);
+                        }
+                    }*/
+                    }
                     
+                    System.out.println("1: Si quieres ordenarlos de menor a mayor por anioPublicacion \n 2: Si quieres ordenarlos alfabeticamente de menor a mayor por editor \n 3: Si quieres ordenarlos alfabeticamente de mayor a menor por editor");
+                    byte eleccion3 = tcl.nextByte();
+                    if (eleccion3 == 1) {
+                        Collections.sort(listaLibro);
+                        for (int i = 0; i < listaLibro.size(); i++) {
+                            System.out.println(listaLibro.get(i));
+                        }
+                        //ordenar arraylist de -  a + por anioPub
+                    } else if (eleccion3 == 2) {
+                        Collections.sort(listaLibro, new EditorComparator());
+                        for (int i = 0; i < listaLibro.size(); i++) {
+                            System.out.println(listaLibro.get(i));
+                        }
+                        //ordenar arrayList de - a + por editor alfabeticamente
+                    } else {
+                        Collections.sort(listaLibro, new EditorComparator().reversed());
+                        for (int i = 0; i < listaLibro.size(); i++) {
+                            System.out.println(listaLibro.get(i));
+                        }
+                        //ordenar arrayList de + a - por editor alfabeticamente
+                    }
+        
                     break;
                 case 4:
 

@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -7,7 +10,7 @@
  *
  * @author ivamar
  */
-public abstract class Producto {
+public abstract class Producto implements Serializable{
     protected float precioNormal;
 
     public Producto(int precioNormal) {
