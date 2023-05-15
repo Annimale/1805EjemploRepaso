@@ -95,8 +95,7 @@ public class MAIN {
                 case 3:
                     System.out.println("Pasando todos los libros a listaLibro");
                    
-                        
-                    listaLibro.removeAll(listaLibro);
+                    listaLibro.clear();
                     for (int i = 0; i < lista.size(); i++) {
                         if (lista.get(i) instanceof Libro) {
                             listaLibro.add((Libro) lista.get(i));//Aqui añadimos si es un libro los libros al arraylist
