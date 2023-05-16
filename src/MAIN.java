@@ -1,10 +1,6 @@
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -90,21 +86,22 @@ public class MAIN {
         }
     }
 
-    public static ArrayList<Producto> leerProductosDesdeArchivo() {
-        ArrayList<Producto> lista = new ArrayList<>();
+    public static void leerProductosDesdeArchivo() {
 
         try {
             FileInputStream fileIn = new FileInputStream("Productos.dat");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            lista = (ArrayList<Producto>) objectIn.readObject();
+            ArrayList<Producto> lista = (ArrayList) objectIn.readObject();//Esto es lo que me faltaba
+            for (Producto producto : lista) {//Esto es lo que me faltaba
+                System.out.println(producto);//Esto es lo que me faltaba
 
+            }
             objectIn.close();
             fileIn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return lista;
 
     }
 
