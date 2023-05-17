@@ -85,7 +85,27 @@ public class MAIN {
             e.printStackTrace();
         }
     }
+/*
+    1.Se define el método guardarProductos como público y estático, lo que significa que se puede acceder a él sin necesidad de crear una instancia de la clase que lo contiene.
 
+2.Se declara una variable de tipo String llamada archivo y se le asigna el nombre del archivo de destino, en este caso "Productos.dat". Este será el archivo donde se guardarán los objetos.
+
+3.Se utiliza un bloque try-catch para manejar las posibles excepciones que pueden ocurrir durante la escritura en el archivo.
+
+4.Dentro del bloque try, se crea un objeto FileOutputStream llamado fileOutputStream pasando como argumento el nombre del archivo. Esto abre un flujo de salida de archivo para escribir en el archivo "Productos.dat".
+
+5. A continuación, se crea un objeto ObjectOutputStream llamado objectOutputStream pasando como argumento el fileOutputStream. Esto permite escribir objetos en el archivo.
+
+6.Se utiliza el método writeObject de objectOutputStream para escribir el objeto lista en el archivo. Este método se encarga de serializar el objeto y escribirlo en el archivo en un formato binario.
+
+7. Luego, se cierran los flujos de salida en orden inverso al que se abrieron, es decir, primero se cierra objectOutputStream y luego fileOutputStream. Esto asegura que los datos se escriban y se guarden correctamente en el archivo antes de cerrar los flujos.
+
+8. Si no se produce ninguna excepción, se muestra un mensaje de éxito en la consola indicando que el archivo "Productos.dat" se ha creado correctamente.
+
+9. Si ocurre alguna excepción durante el proceso de escritura, se captura en el bloque catch. En ese caso, se muestra un mensaje de error en la consola y se imprime la traza de la excepción utilizando el método printStackTrace().
+
+En resumen, el método guardarProductos se encarga de escribir un objeto ArrayList<Producto> en un archivo binario llamado "Productos.dat". Utiliza flujos de salida de archivo y un objeto ObjectOutputStream para realizar la serialización y escritura de los datos en el archivo.
+    */
     public static void leerProductosDesdeArchivo() {
 
         try {
@@ -95,8 +115,8 @@ public class MAIN {
             ArrayList<Producto> lista = (ArrayList) objectIn.readObject();//Esto es lo que me faltaba
             for (Producto producto : lista) {//Esto es lo que me faltaba
                 System.out.println(producto);//Esto es lo que me faltaba
-
             }
+            
             objectIn.close();
             fileIn.close();
         } catch (Exception e) {
@@ -104,7 +124,25 @@ public class MAIN {
         }
 
     }
+/*
+    1. Se define el método leerProductosDesdeArchivo como público y estático.
 
+2. Se utiliza un bloque try-catch para manejar las posibles excepciones que pueden ocurrir durante la lectura del archivo.
+
+3. Dentro del bloque try, se crea un objeto FileInputStream llamado fileIn pasando como argumento el nombre del archivo "Productos.dat". Esto abre un flujo de entrada de archivo para leer los datos del archivo.
+
+4. A continuación, se crea un objeto ObjectInputStream llamado objectIn pasando como argumento el fileIn. Esto permite leer objetos del archivo.
+
+5. Se lee el objeto ArrayList<Producto> del archivo utilizando el método readObject() de objectIn y se almacena en una variable local llamada lista. Aquí, se realiza un cast (ArrayList) para indicar que se espera un objeto ArrayList en la lectura del archivo.
+
+6. Luego, se itera sobre los elementos de la lista utilizando un bucle for-each para recorrer cada Producto en lista.
+
+7. Dentro del bucle, se muestra cada Producto en la consola utilizando System.out.println(producto). Esto imprimirá una representación legible del objeto Producto en la consola.
+
+8. Después de finalizar el bucle, se cierran los flujos de entrada en orden inverso al que se abrieron, es decir, primero se cierra objectIn y luego fileIn. Esto asegura que los recursos se liberen correctamente.
+
+9. Si ocurre alguna excepción durante el proceso de lectura, se captura en el bloque catch. En ese caso, se muestra la traza de la excepción utilizando el método printStackTrace().
+    */
     public static void main(String[] args) {
         ArrayList<Producto> lista = new ArrayList();
         ArrayList<Libro> listaLibro = new ArrayList();

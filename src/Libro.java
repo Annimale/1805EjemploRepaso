@@ -58,7 +58,7 @@ public class Libro extends Producto implements Comparable {
     }
 
     @Override
-    public int compareTo(Object t) {
+    public int compareTo(Object t) {//ESTE COMPARETO ES EL BUENO
         Libro llibre=(Libro) t;
         return this.anoPublicacion-llibre.getAnoPublicacion();
     }
